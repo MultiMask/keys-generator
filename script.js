@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
-var generator = require('./src/index')
+const chalk = require('chalk')
+const ArgumentParser = require('argparse').ArgumentParser
+const generator = require('./src/index')
 
-var ArgumentParser = require('argparse').ArgumentParser;
+const ctx = new chalk.constructor({level: 3});
+const log = console.log
+
 var parser = new ArgumentParser({
   version: '0.0.1',
   addHelp:true,
@@ -31,9 +35,9 @@ function byEntropy(en) {
   try {
     const mnemonic = generator.generateMnemonic(args.entropy)
 
-    console.log(mnemonic)
+    log(chalk`Mnemonic: {green ${mnemonic}}`)
   } catch (e) {
-    console.log(e);
+    log(chalk`Something wrong: {red ${e}}`)
   }
 }
 

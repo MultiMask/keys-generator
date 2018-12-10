@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/MultiMask/keys-generator#readme",
   "dependencies": {
-    "argparse": "^1.0.10",
-    "bip39": "^2.5.0"
+    "argparse": "1.0.10",
+    "bip39": "2.5.0",
+    "chalk": "^2.4.1"
   }
 }
