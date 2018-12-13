@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk')
 const ArgumentParser = require('argparse').ArgumentParser
 const generator = require('./src/index')
+const chalk = require('chalk')
 
 const btc = require('./src/btc')
 
-const ctx = new chalk.constructor({level: 3});
-const log = console.log
-const say = (key, value) => log(chalk`${key} {green ${value}}`)
+const { log } = console
 
 const providers = [btc]
 
@@ -44,15 +42,7 @@ function byEntropy(en) {
     const seed = generator.seedFromMnemonic(mnemonic)
     log(chalk`Seed: {green ${seed.toString('hex')}}`)
     
-    providers.forEach(pr => {
-      const res = pr()
-
-      log('\n');
-      say('---', res.title)
-      say('PrivateKey:', res.private)
-      say('PublicKey: ', res.public)
-      say('Address:   ', res.address)
-    })
+    providers.forEach(pr => { log(); pr()})
   } catch (e) {
     log(chalk`Something wrong: {red ${e}}`)
   }
