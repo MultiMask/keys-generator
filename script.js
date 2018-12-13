@@ -42,7 +42,7 @@ function byEntropy(en) {
     const seed = generator.seedFromMnemonic(mnemonic)
     log(chalk`Seed: {green ${seed.toString('hex')}}`)
     
-    providers.forEach(pr => { log(); pr()})
+    providers.forEach(pr => { log(); pr(seed)})
   } catch (e) {
     log(chalk`Something wrong: {red ${e}}`)
   }
