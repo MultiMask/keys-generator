@@ -5,7 +5,6 @@ const bitcoin = require('bitcoinjs-lib')
 const bip39 = require('bip39')
 
 module.exports = (seed, index = 0) => {
-  log(seed)
   const path = `m/44'/0'/0'/0/${index}`
   const keys = bitcoin.bip32.fromSeed(seed, bitcoin.networks.bitcoin).derivePath(path)
 
