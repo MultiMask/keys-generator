@@ -48,8 +48,22 @@ function byEntropy(en) {
   }
 }
 
-function byMnemonic(mn) {
-
+function byMnemonic(mnemonic) {
+  try {
+    const isValid = generator.validateMnemonic(mnemonic)
+    log(chalk`Mnemonic: {green ${mnemonic}}`)
+    
+    if (isValid) {
+      const seed = generator.seedFromMnemonic(mnemonic)
+      log(chalk`Seed: {green ${seed.toString('hex')}}`)
+      
+      providers.forEach(pr => { log(); pr(seed)})
+    } else {
+      log(chalk`{red Not Valid Mnemonic}`)
+    }
+  } catch (e) {
+    log(chalk`Something wrong: {red ${e}}`)
+  }
 }
 
 var args = parser.parseArgs()
