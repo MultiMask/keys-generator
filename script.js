@@ -5,10 +5,11 @@ const generator = require('./src/index')
 const chalk = require('chalk')
 
 const btc = require('./src/btc')
+const eos = require('./src/eos')
 
 const { log } = console
 
-const providers = [btc]
+const providers = [btc, eos]
 
 var parser = new ArgumentParser({
   version: '0.0.1',
